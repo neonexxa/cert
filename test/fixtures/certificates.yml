@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  provider_id: 1
+  description: MyText
+  qualification_id: 1
+  closing_date: 2017-03-07
+  sitting_date: 2017-03-07
+  category_id: 1
+
+two:
+  title: MyString
+  provider_id: 1
+  description: MyText
+  qualification_id: 1
+  closing_date: 2017-03-07
+  sitting_date: 2017-03-07
+  category_id: 1

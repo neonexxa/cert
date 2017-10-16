@@ -1,0 +1,58 @@
+<div class="container">
+	<br>
+	<br>
+	<br>
+
+	<div class="row"> <!-- begin row -->
+		<h4>
+			List of certificates for <%= @category.title %>
+		</h4>
+		<p>Certificate.my papers are skills-based. For more details click on the corresponding subject icon in the summary table below:</p>
+		<table class="bordered side-border-table">
+	        <thead>
+	        	<tr>
+	        		<td colspan="5" style="text-align: center">
+	        			Certifications
+	        		</td>
+	        	</tr>
+	        	<tr class="#ffeb3b yellow table-row-font">
+	        		<td style="text-align: center;">
+	        			Code
+	        		</td>
+	        		<td>
+	        			Title
+	        		</td>
+	        		<td>
+	        			Description
+	        		</td>
+	        		<td>
+	        			Holder
+	        		</td>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	          	<% @certificates.each do |cert| %>
+          			<tr class="hoverable can-click-this-row" data-href="<%= profesional_certificate_path(cert.id) %>">
+		        		<td style="width: 20%">
+			            		<p><%= cert.code %></p>
+			            </td>
+			            <td style="width: 20%">
+			            		<p><%= cert.title %></p>
+			            </td>
+			            <td style="width: 40%">
+			            		<p><%= cert.description %></p>
+			            </td>
+			            <td style="width: 20%">
+			            		<p><%= "1,300" %></p>
+			            </td>
+		          	</tr>
+	        	<% end %>
+	        </tbody>
+	    </table>
+	</div> <!-- end of row -->
+
+	<br>
+	<br>
+	<br>
+	<br>
+</div>

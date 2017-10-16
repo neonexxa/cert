@@ -1,0 +1,72 @@
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="row"> <!-- begin row -->
+		<h4>
+			List of certificates
+		</h4>
+		<p>Certificate.my papers are skills-based. For more details click on the corresponding subject icon in the summary table below:</p>
+		<table class="bordered" style="border: solid grey 1px">
+	        <thead>
+	        	<tr>
+	        		<td colspan="5" style="text-align: center">
+	        			Certifications
+	        		</td>
+	        	</tr>
+	        	<tr class="#ffeb3b yellow">
+	        		<td style="text-align: center;">
+	        			Certificate
+	        		</td>
+	        		<td style="text-align: center;"">
+	        			Code
+	        		</td>
+	        		<td style="text-align: center;">
+	        			Title
+	        		</td>
+	        		<td>
+	        			Price (RM)
+	        		</td>
+	        		<td>
+	        			Closing Date
+	        		</td>
+	        		<td>
+	        			Sitting Date
+	        		</td>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	          <% @certificates.each do |cert| %>
+		        	<tr class="hoverable can-click-this-row" data-href="<%= cert_enquiry_path(cert.id) %>">
+			            <td style="width: 15%">
+			            	<p style="text-align: center;"><%= cert.title %></p>
+			            </td>
+			            <td style="width: 15%">
+			            	<p style="text-align: center;"><%= cert.code %></p>
+			            </td>
+			            <td style="width: 40%">
+			            	<p style="text-align: center;"><%= cert.description %></p>
+			            </td>
+			            <td style="width: 10%">
+			            	<p>RM <%= cert.price %></p>
+			            </td>
+			            <td style="width: 10%">
+			            	<p><%= cert.closing_date %></p>
+			            </td>
+			            <td style="width: 10%">
+			            	<p><%= cert.sitting_date %></p>
+			            </td>
+		          	</tr>	
+	        	<% end %>
+	        </tbody>
+	    </table>
+	</div> <!-- end of row -->
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+</div>

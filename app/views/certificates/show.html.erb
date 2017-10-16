@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @certificate.title %>
+</p>
+
+<p>
+  <strong>Provider:</strong>
+  <%= @certificate.provider_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @certificate.description %>
+</p>
+
+<p>
+  <strong>Qualification:</strong>
+  <%= @certificate.qualification_id %>
+</p>
+
+<p>
+  <strong>Closing date:</strong>
+  <%= @certificate.closing_date %>
+</p>
+
+<p>
+  <strong>Sitting date:</strong>
+  <%= @certificate.sitting_date %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @certificate.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_certificate_path(@certificate) %> |
+<%= link_to 'Back', certificates_path %>

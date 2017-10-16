@@ -1,0 +1,10 @@
+
+<%= form_tag("/professionals/search", method: "get") do %>
+	<div class="row" style="margin:0px;">
+		<%= text_field_tag(:search,"",style: "border:solid black;border-radius:15px;padding: 0px 10px; margin:0px",placeholder: "Search user, email, id",class: "col m7 s7") %>
+		<%= button_tag(type: "submit", class: "btn #ffeb3b yellow black-text col m4 s4 offset-s1 offset-m1") do %>
+		    <i class="large material-icons">search</i>
+		<% end %>
+  			
+	</div>
+<% end %>

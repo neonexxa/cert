@@ -1,0 +1,62 @@
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m12">
+
+				<br>
+
+				<h4>Boards and Directors</h4>
+
+				<br>
+				<br>
+
+				<p>As the authorised representatives of Serai Oraganisation, Training.my, Google Developer Groups (GDG) and Testing Boards Malaysia.</p>
+				<p>Together with multi industrial collaborations join forces to provide the public with information about MYCerts and the assessments available through MYCerts in Malaysia.</p>
+
+				<br>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m12">
+				<h4>Certifications Boards</h4>
+			</div>
+		</div>
+		<div class="row">
+			<% @boards.each do |board| %>
+				<div class="col s12 m3">
+					<div class="card">
+			            <div class="card-image">
+			              	<!-- <%#= board.board_photo.path_url.as_json %> -->
+			              	<% if board.board_photo.nil? %>
+			              		<img src="http://placehold.it/285x250">
+			              	<% else %>
+								<%= image_tag board.board_photo.path, :style => "height:250px" %>
+							<%end%>
+			              <span class="card-title" style="font-size: 15px;text-shadow: 1px 1px black"><%= board.name %></span>
+			            </div>
+			            <div class="card-content">
+			              <p><%= board.title %></p>
+			            </div>
+			        </div>
+				</div>
+			<% end %>
+		</div>
+
+				<br>
+				<br>
+				<br>
+				<br>
+	</div>
+
+
+
+<!-- begin script for index -->
+<script>
+	
+</script>
+<!-- end script for index -->

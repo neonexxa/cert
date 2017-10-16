@@ -1,0 +1,65 @@
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="row"> <!-- begin row -->
+		<h4>
+			List of qualifications
+		</h4>
+		<p>Certificate.my papers are skills-based. For more details click on the corresponding subject icon in the summary table below:</p>
+		<table class="bordered" style="border: solid grey 1px">
+	        <thead>
+	        	<tr >
+	        		<td colspan="4" style="text-align: center">
+	        			All categories
+	        		</td>
+	        	</tr>
+	        	<tr style="text-align: center" class="#ffeb3b yellow">
+	        		<td></td>
+	        		<td>
+	        			Code
+	        		</td>
+	        		<td>
+	        			Certification
+	        		</td>
+	        		<td>
+	        			Category
+	        		</td>
+	        		<td>
+	        			Register
+	        		</td>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<% @certificates.each do |cert| %>
+		        	<tr>
+			            <td style="width: 20%">
+			            	<p><img src="/laravel-logo-big.png" alt="" width="100%"></p>
+			            	<p style="text-align: center;"><%= cert.title %></p>
+			            </td>
+			            <td style="width: 10%">
+			            	<p><%= cert.code %></p>
+			            </td>
+			            <td style="width: 30%">
+			            	<p><%= cert.description %></p>
+			            </td>
+			            <td style="width: 20%">
+			            	<p><%= cert.category.title %></p>
+			            </td>
+			            <td style="width: 20%">
+			            	<p><%= "Register" %></p>
+			            </td>
+		          	</tr>	
+	        	<% end %>
+	        </tbody>
+	    </table>
+	</div> <!-- end of row -->
+
+	<br>
+	<br>
+	<br>
+	<br>
+
+</div>

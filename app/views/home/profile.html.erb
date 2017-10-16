@@ -1,0 +1,71 @@
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<%= @user.name %>
+	</div>
+	<div class="row">
+		First Certified : <%= @user.first_certified %>
+	</div>
+	<div class="row"> <!-- begin row -->
+		<h4>
+			My certificates
+		</h4>
+		<p>Certificate.my papers are skills-based. For more details click on the corresponding subject icon in the summary table below:</p>
+		<table class="bordered" style="border: solid grey 1px">
+	        <thead>
+	        	<tr>
+	        		<td colspan="5" style="text-align: center">
+	        			Certificates
+	        		</td>
+	        	</tr>
+	        	<tr class="#ffeb3b yellow" style="font-weight: 900">
+	        		<td style="text-align: center;">
+	        			Badge
+	        		</td>
+	        		<td>
+	        			Title
+	        		</td>
+	        		<td>
+	        			Description
+	        		</td>
+	        		<td>
+	        			Obtained
+	        		</td>
+	        		<td>
+	        			Expires
+	        		</td>
+	        	</tr>
+	        </thead>
+	        <tbody>
+
+	          	<% @certificates.each do |certificate| %>
+		        	<tr class="hoverable">
+
+		        		<td style="width: 10%">
+			            	<p style="text-align: center;"><%= certificate.id %></p>
+			            </td>
+			            <td style="width: 10%">
+			            	<p><%= certificate.title %></p>
+			            </td>
+			            <td style="width: 40%">
+			            	<p><%= certificate.description %></p>
+			            </td>
+			            <td style="width: 20%">
+			            	<p><%= certificate.certify_lists.where(certificate_id: certificate.id).pluck(:obtained)[0] %></p>
+			            </td>
+			            <td style="width: 20%">
+			            	<p><%= certificate.certify_lists.where(certificate_id: certificate.id).pluck(:expires_by)[0] %></p>
+			            </td>
+		          	</tr>	
+	        	<% end %>
+	        </tbody>
+	    </table>
+	</div> <!-- end of row -->
+
+	<br>
+	<br>
+	<br>
+	<br>
+</div>

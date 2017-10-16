@@ -1,0 +1,82 @@
+<br>
+<br>
+<div class="row">
+  <h1 class="header center lime-text text-darken-4"><%= @certificate.description %></h1>  
+</div>
+
+<div class="container">
+	<div class="row">
+		<h4>Details</h4>
+	</div>
+	<div class="row">
+		<p>
+			<%= @certificate.detail %>		
+		</p>
+	</div>
+	<div class="row">
+		<h4>At a Glance</h4>
+	</div>
+	<div class="row">
+		<div class="col m6 s12">
+			<table class="striped">
+		        <tbody>
+		          <tr>
+		            <td>Code</td>
+		            <td><%= @certificate.code %></td>
+		          </tr>
+		          <tr>
+		            <td>Title</td>
+		            <td><%= @certificate.title %></td>
+		          </tr>
+		          <tr>
+		            <td>Description</td>
+		            <td><%= @certificate.description %></td>
+		          </tr>
+		          <tr>
+		            <td>Qualification</td>
+		            <td><%= @certificate.qualification.title %></td>
+		          </tr>
+		          <tr>
+		            <td>Provider</td>
+		            <td><%#= @certificate.providers.title %></td>
+		          </tr>
+		          <tr>
+		            <td>Category</td>
+		            <td><%= @certificate.category.title %></td>
+		          </tr>
+		          <tr>
+		            <td>Intake</td>
+		            <td><%= "enrol anytime" %></td>
+		          </tr>
+		        </tbody>
+		    </table>	
+		</div>
+		<div class="col m6 s12">
+			
+			
+			<%= form_tag("/certificates-view/"+@certificate.id.to_s, method: "post", style: "border:solid #827717;border-radius:15px;padding:10px") do %>
+			  	<h2 style="margin:0px;font-size: 2rem;text-align: center;" class="lime-text text-darken-4">Enrol Now!!</h2>
+			  	<hr>
+				<div class="field">
+			    	<%= label(:enrol, :name)  %><br />
+			    	<%= text_field(:enrol, :name, autofocus: true)  %>
+			 	</div>
+			 	<input type="hidden" value="<%= @certificate.description %>" name="enrol[cert]">
+			 	<div class="field">
+			 	   	<%= label(:enrol, :email) %><br />
+			 	   	<%= email_field(:enrol, :email)  %>
+			 	</div>
+				<div class="field">
+				 	<%= label(:enrol, :phone_number)  %><br />
+				 	<%= text_field(:enrol, :phone_number)  %>
+			 	</div>
+			  	<div class="actions">
+			    	<%= submit_tag("Submit", class: "btn yellow black-text", style: "width:100%") %>
+			  	</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		
+	</div>
+</div>

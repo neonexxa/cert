@@ -1,0 +1,149 @@
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<br>
+<% 
+=begin
+%>
+
+	<div class="row"> <!-- begin row -->
+		<h4>
+			List of certificates
+		</h4>
+		<p>Certificate.my papers are skills-based. For more details click on the corresponding subject icon in the summary table below:</p>
+		<table class="bordered" style="border: solid grey 1px">
+	        <thead>
+	        	<tr>
+	        		<td colspan="4" style="text-align: center">
+	        			Certifications
+	        		</td>
+	        	</tr>
+	        	<tr>
+	        		<td style="text-align: center;">
+	        			Certificate
+	        		</td>
+	        		<td>
+	        			Price (RM)
+	        		</td>
+	        		<td>
+	        			Closing Date
+	        		</td>
+	        		<td>
+	        			Sitting Date
+	        		</td>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	          <% @certificates.each do |cert| %>
+		        	<tr>
+			            <td style="width: 25%">
+			            	<p style="text-align: center;"><%= cert.title %></p>
+			            </td>
+			            <td style="width: 25%">
+			            	<p>RM <%= cert.price %></p>
+			            </td>
+			            <td style="width: 25%">
+			            	<p><%= cert.closing_date %></p>
+			            </td>
+			            <td style="width: 25%">
+			            	<p><%= cert.sitting_date %></p>
+			            </td>
+		          	</tr>	
+	        	<% end %>
+	        </tbody>
+	    </table>
+	</div> <!-- end of row -->
+
+	<br>
+	<br>
+	<br>
+	<br>
+<% 
+=end
+%>
+	
+
+	
+	<%# if !@search_key.nil? %>
+		<div class="row">
+			<table class="bordered" style="border: solid grey 1px">
+		        <thead>
+		        	<tr>
+		        		<td colspan="3" style="text-align: center">
+		        			<% if !@users.nil? && !@users.empty? %>
+		        			Professionals list : matches name->
+			        			<% if @search_key.empty? %>
+			        				All
+			        			<% else %>	
+			        				<%= @search_key %> 
+			        			<% end %>
+		        			<% else %>
+		        				Professionals list : <strong style="color: red">none</strong> matches name-> <%= @search_key %> 
+		        			<% end %>
+		        		</td>
+		        	</tr>
+		        	<% if !@users.nil? && !@users.empty? %>
+		        	<tr class="#ffeb3b yellow" style="font-weight: 900">
+		        		<td style="text-align: center;">
+		        			Id
+		        		</td>
+		        		<td>
+		        			Name
+		        		</td>
+		        		<td>
+		        			Certificates
+		        		</td>
+		        	</tr>
+		        	<% end %>
+		        </thead>
+		        <tbody>
+		        	<% if !@users.nil? && !@users.empty? %>
+			          	<% @users.each do |user| %>
+			          		<% if !user.certificates.empty? %>
+				        	<tr class="hoverable can-click-this-row" data-href="<%= profesional_user_path(user.id) %>">
+				        		<td style="width: 10%">
+					            		<p style="text-align: center;"><%= user.id %></p>
+					            </td>
+					            <td style="width: 20%">
+					            		<p><%= user.name %></p>
+					            </td>
+					            <td style="width: 70%">
+				            		<p>
+				            			
+				            			 
+					            			<% user.certificates.each do |cert| %>
+					            				<%= cert.title %><%= ',' unless cert.id == user.certificates.last.id %>
+					            			<% end %>
+				            			
+				            		</p>
+					            </td>
+				          	</tr>	
+				          	<% end %>
+			        	<% end %>
+		        	<% end %>
+		        </tbody>
+		    </table>
+		</div>
+
+	<%# end %>
+	<br>
+	<br>
+	<div class="row">
+		<h4>Category list of certifications</h4>
+	</div>
+	<!-- begin category -->
+	<div class="row">
+		<% @categories.each do |category| %>
+			<div class="col s12 m4">
+				<%= link_to profesional_category_path(category.id), :action => 'go' do %>
+					<div class="card blue-grey darken-1 hoverable">
+						<div class="card-content white-text">
+							<span class="card-title"><%= category.title %></span>
+						</div>
+					</div>	
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

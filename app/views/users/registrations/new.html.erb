@@ -1,0 +1,49 @@
+<div class="container user-form">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+<!-- date of birth -->
+  <div class="field">
+    <%= f.label :created_at %><br />
+    <%= f.date_field :created_at, :as => :date, start_year: Date.today.year - 60, end_year: Date.today.year - 7, order: [:day, :month, :year], :label => false, :prompt => true, :label => 'Tarikh Lahir'  %>
+  </div>
+<!-- end date of birth -->
+
+<!-- state pulak -->
+<div class="field">
+  <%= f.collection_select :state_id, Examiner.all, :id, :title %>
+</div>
+<!-- end state pulak -->
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
+</div>
+<br>

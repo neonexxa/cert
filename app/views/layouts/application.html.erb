@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cert</title>
+    <%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %> -->
+    <!-- fonts will be here -->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- styles will be here -->
+	<%= stylesheet_link_tag "/materializecss/css/materialize.min" %>
+	<script src="https://use.fontawesome.com/2961340bdf.js"></script>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<style>
+		.can-click-this-row:hover{
+			cursor: pointer;
+		}
+		.side-border-table{
+			border: solid grey 1px;
+		}
+		.table-row-font{
+			font-weight: 900;
+			text-align: center;
+		}
+		.user-form{padding:30px;border-radius: 15px; border:solid #827717}
+	</style>
+  </head>
+
+  <body>
+
+  	<!-- begin nav -->
+  	<nav class="N/A transparent" style="box-shadow: none">
+	    <div class="nav-wrapper">
+	    	<a href="#" data-activates="mobile-demo" class="button-collapse right  lime-text text-darken-4" style="padding: 0 18px; margin: 0px; border-radius: 5px; border:solid #827717;"><i class="material-icons">menu</i></a>
+		    
+			<a href="/home" class="brand-logo lime-text text-darken-4" style="padding-left: 15px;padding-right: 40px">Certification.My</a>
+		    <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+		        <li><a class="dropdown-button black-text" href="#!" data-activates="certificatedropdown-desktop">Certifications<i class="material-icons right">arrow_drop_down</i></a></li>
+		        <li><a class="dropdown-button black-text" href="#!" data-activates="boardsandexaminers-desktop">Boards & examiners<i class="material-icons right">arrow_drop_down</i></a></li>
+		        <li><a class="black-text" href="/professionals">Certified Professionals</a></li>
+		        <% if user_signed_in? %>
+        		<li><a class="dropdown-button lime-text text-darken-4" href="#!" data-activates="user_log_in-desktop"><%= current_user.name %><i class="material-icons right">arrow_drop_down</i></a></li>
+        		<% else %>
+        		<li><a class="dropdown-button btn #ffeb3b yellow black-text" href="#!" data-activates="user_not_log_in-desktop">Members<i class="material-icons right">arrow_drop_down</i></a></li>
+        		<% end %>
+		    </ul>
+		    <ul class="side-nav" id="mobile-demo">
+		    	<li><a class="dropdown-button black-text" href="#!" data-activates="certificatedropdown-mobile">Certifications<i class="material-icons right">arrow_drop_down</i></a></li>
+		        <li><a class="dropdown-button black-text" href="#!" data-activates="boardsandexaminers-mobile">Boards & examiners<i class="material-icons right">arrow_drop_down</i></a></li>
+		        <li><a class="black-text" href="/professionals">Certified Professionals</a></li>
+		        <% if user_signed_in? %>
+        		<li><a class="dropdown-button lime-text text-darken-4" href="#!" data-activates="user_log_in-mobile"><%= current_user.name %><i class="material-icons right">arrow_drop_down</i></a></li>
+        		<% else %>
+        		<li><a class="dropdown-button btn #ffeb3b yellow black-text" href="#!" data-activates="user_not_log_in-mobile">Members<i class="material-icons right">arrow_drop_down</i></a></li>
+        		<% end %>
+		    </ul>
+	    </div>
+	</nav>
+
+	<% if user_signed_in? %>
+  	<!-- Dropdown Structure -->
+	<ul id="user_log_in-desktop" class="dropdown-content">
+		<li><a href="/profile" class="black-text">Profile</a></li>
+		<li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete',:class => "red-text" %></li>
+	</ul>
+	<ul id="user_log_in-mobile" class="dropdown-content">
+		<li><a href="/profile" class="black-text">Profile</a></li>
+		<li><%= link_to "Sign out", destroy_user_session_path, :method => 'delete',:class => "red-text" %></li>
+	</ul>
+	<% else %>
+	<ul id="user_not_log_in-desktop" class="dropdown-content">
+		<li><a href="/users/sign_in" class="black-text">Login</a></li>
+		<li><a href="/users/sign_up" class="black-text">Register</a></li>
+	</ul>
+	<ul id="user_not_log_in-mobile" class="dropdown-content">
+		<li><a href="/users/sign_in" class="black-text">Login</a></li>
+		<li><a href="/users/sign_up" class="black-text">Register</a></li>
+	</ul>
+	<% end %>
+
+	<ul id="certificatedropdown-desktop" class="dropdown-content">
+		<li><a class="black-text" href="/certificates-list">Certification List</a></li>
+		<li><a class="black-text" href="/qualification">Qualification Level</a></li>
+	</ul>
+	<ul id="boardsandexaminers-desktop" class="dropdown-content">
+		<li><a class="black-text" href="/boards">Boards</a></li>
+		<li><a class="black-text" href="/examiners">Examiners</a></li>
+	</ul>
+
+	<ul id="certificatedropdown-mobile" class="dropdown-content">
+		<li><a class="black-text" href="/certificates-list">Certification List</a></li>
+		<li><a class="black-text" href="/qualification">Qualification Level</a></li>
+	</ul>
+	<ul id="boardsandexaminers-mobile" class="dropdown-content">
+		<li><a class="black-text" href="/boards">Boards</a></li>
+		<li><a class="black-text" href="/examiners">Examiners</a></li>
+	</ul>
+	<!-- end nav -->
+
+	<div class="card-panel #827717 lime darken-4 white-text">
+	<div class="row" style="margin:0px">
+		<div class="col m6 s12" style="margin: 10px 0px;"><%= @page %></div>
+		<div class="col m6 s12" style="margin: 10px 0px;"><%= render 'home/search' %></div>
+
+	</div>
+			
+	</div>
+
+	<% if @page == "Login" or @page == "Sign Up" or @page == "Reset Password" %>
+	<!-- <div style="padding:30px;border-radius: 15px; border:solid #827717"> -->
+	<% end %>
+
+    <%= yield %>
+    
+    <% if @page == "Login" or @page == "Sign Up" or @page == "Reset Password" %>
+	<!-- </div> -->
+	<!-- <br> -->
+    <% end %>
+
+	<!-- begin footer -->
+	
+	<footer class="page-footer #827717 lime darken-4">
+		<div class="container">
+			<div class="row">
+			  	<div class="col l6 s12">
+			    	<h5 class="white-text">Malaysia Board of Certifications</h5>
+			    	<p class="white-text">MYCert is the world-class certification board, inspiring and enabling professional excellence towards Certified IT Professionals.</p>
+			  	</div>
+				<!-- <div class="col l4 offset-l2 s12">
+					<h5 class="white-text">Links</h5>
+					<ul>
+					  	<li><a class="white-text" href="#!">Link 1</a></li>
+				  		<li><a class="white-text" href="#!">Link 2</a></li>
+				  		<li><a class="white-text" href="#!">Link 3</a></li>
+				  		<li><a class="white-text" href="#!">Link 4</a></li>
+					</ul>
+				</div> -->
+			</div>
+		</div>
+        <div class="footer-copyright">
+            <div class="container white-text">
+            	© 2017 Copyright Serai.org
+            	
+            </div>
+        </div>
+    </footer>
+Team name : smart panda
+
+name: 	muhammad firdaus bin hishamuddin
+Id: 	18979
+Course: bis
+Phone: 	+60134494290
+Email: 	firdaushishamuddin@gmail.com
+Ic: 	950713-10-5267
+
+name:	nurhaziqah binti mohamad latif
+Id:		21618
+Course:	bis
+Phone:	+60 11 1018 6991
+Email:	haziqahlatif@gmail.com
+Ic:		961018-08-6010
+
+name:	arif asyraf bin mohd norain
+Id:		19073
+Course:	ict
+Phone:	+60197553573
+Email:	ariffly2210@gmail.com
+Ic:		951022-01-6059
+
+Team name :
+
+name: Muhammad Nazmi Bin Mat Asri
+Id: 19103
+Course: ICT
+Phone: 0173445919
+Email: nazmiasri95@gmail.com
+Ic: 950721-10-6737
+
+name:  Lai Zhen Yean
+Id:  22888
+Course:  ICT
+Phone:  +6019-5675808
+Email:  louiszhenyean@hotmail.com
+Ic:  970311-08-5089  
+
+name: Eliya Fariha Rusli
+Id: 18889
+Course: ICT
+Phone: +601155051583
+Email: eliyafariha@gmail.com
+Ic: 950213-11-5098
+	<!-- end footer -->
+
+    <!-- js begin -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+	<!-- js end -->
+	<script>
+		$( document ).ready(function(){
+		    $(".button-collapse").sideNav();
+		    $('select').material_select(); // disini saya initialize
+		
+		    $(".can-click-this-row").click(function() {
+		        window.location = $(this).data("href");
+		    });
+		});
+	</script>
+	<% if @notice %>
+      <script>
+        $(function() {
+          Materialize.toast('<%= @notice %>', 3000);
+        });
+      </script>
+    <% end %>
+  </body>
+</html>
